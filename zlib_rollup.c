@@ -23669,10 +23669,10 @@ static void pwinerror (s)
 #define MAX_NAME_LEN 1024
 
 #ifdef MAXSEG_64K
-#  define local2 static
+#  define local static
    /* Needed for systems with limitation on stack size. */
 #else
-#  define local2
+#  define local
 #endif
 
 #ifdef Z_SOLO
@@ -23896,7 +23896,7 @@ void gz_compress(in, out)
     FILE   *in;
     gzFile out;
 {
-    local2 char buf[BUFLEN];
+    local char buf[BUFLEN];
     int len;
     int err;
 
@@ -23964,7 +23964,7 @@ void gz_uncompress(in, out)
     gzFile in;
     FILE   *out;
 {
-    local2 char buf[BUFLEN];
+    local char buf[BUFLEN];
     int len;
     int err;
 
@@ -23991,7 +23991,7 @@ void file_compress(file, mode)
     char  *file;
     char  *mode;
 {
-    local2 char outfile[MAX_NAME_LEN];
+    local char outfile[MAX_NAME_LEN];
     FILE  *in;
     gzFile out;
 
@@ -24029,7 +24029,7 @@ void file_compress(file, mode)
 void file_uncompress(file)
     char  *file;
 {
-    local2 char buf[MAX_NAME_LEN];
+    local char buf[MAX_NAME_LEN];
     char *infile, *outfile;
     FILE  *out;
     gzFile in;
