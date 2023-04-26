@@ -1,29 +1,15 @@
 (set -ex
-
-# make test
-# !! gcc -O3 -D_LARGEFILE64_SOURCE=1 -I. -c -o example.o test/example.c
-# !! gcc -O3 -D_LARGEFILE64_SOURCE=1  -c -o adler32.o adler32.c
-# !! gcc -O3 -D_LARGEFILE64_SOURCE=1  -c -o crc32.o crc32.c
-# !! gcc -O3 -D_LARGEFILE64_SOURCE=1  -c -o deflate.o deflate.c
-# !! gcc -O3 -D_LARGEFILE64_SOURCE=1  -c -o infback.o infback.c
-# !! gcc -O3 -D_LARGEFILE64_SOURCE=1  -c -o inffast.o inffast.c
-# !! gcc -O3 -D_LARGEFILE64_SOURCE=1  -c -o inflate.o inflate.c
-# !! gcc -O3 -D_LARGEFILE64_SOURCE=1  -c -o inftrees.o inftrees.c
-# !! gcc -O3 -D_LARGEFILE64_SOURCE=1  -c -o trees.o trees.c
-# !! gcc -O3 -D_LARGEFILE64_SOURCE=1  -c -o zutil.o zutil.c
-# !! gcc -O3 -D_LARGEFILE64_SOURCE=1  -c -o compress.o compress.c
-# !! gcc -O3 -D_LARGEFILE64_SOURCE=1  -c -o uncompr.o uncompr.c
-# !! gcc -O3 -D_LARGEFILE64_SOURCE=1  -c -o gzclose.o gzclose.c
-# !! gcc -O3 -D_LARGEFILE64_SOURCE=1  -c -o gzlib.o gzlib.c
-# !! gcc -O3 -D_LARGEFILE64_SOURCE=1  -c -o gzread.o gzread.c
-# !! gcc -O3 -D_LARGEFILE64_SOURCE=1  -c -o gzwrite.o gzwrite.c
-
 CFLAGS=""
 CFLAGS="$CFLAGS -DHAVE_UNISTD_H"
 # CFLAGS="$CFLAGS -D_LARGEFILE64_SOURCE=1"
-# CFLAGS="$CFLAGS -I."
-# CFLAGS="$CFLAGS -L."
+CFLAGS="$CFLAGS -I."
+CFLAGS="$CFLAGS -L."
 CFLAGS="$CFLAGS -O3"
+CFLAGS="$CFLAGS -Wall"
+CFLAGS="$CFLAGS -Werror"
+
+export LD_LIBRARY_PATH="."
+
 VERSION=1.2.13
 
 
@@ -75,7 +61,7 @@ then
     printf "\n    *** zlib test static OK ***\n"
 else
     printf "\n    *** zlib test static FAILED ***\n"
-    false
+    exit 1
 fi
 
 
@@ -135,7 +121,7 @@ then
     printf "\n    *** zlib test shared OK ***\n"
 else
     printf "\n    *** zlib test shared FAILED ***\n"
-    false
+    exit 1
 fi
 
 
@@ -194,6 +180,6 @@ then
     printf "\n    *** zlib test 64 OK ***\n"
 else
     printf "\n    *** zlib test 64 FAILED ***\n"
-    false
+    exit 1
 fi
 )
